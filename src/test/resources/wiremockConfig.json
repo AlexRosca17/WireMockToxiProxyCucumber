@@ -1,0 +1,16 @@
+{
+  "get": [
+    {
+      "url": "/api/test",
+      "response": "{ \"message\": \"Success\" }",
+      "status": 200
+    }
+  ],
+  "post": [
+    {
+      "url": "/api/postTest",
+      "response": "{ \"message\": \"Post Success\" }",
+      "status": 200
+    }
+  ]
+}
