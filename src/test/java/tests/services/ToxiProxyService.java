@@ -37,6 +37,14 @@ public class ToxiProxyService {
         System.out.println("Bandwidth limit injected: " + rate + " KB/s");
     }
 
+    public void removeAllToxics() throws IOException {
+        if (proxy != null) {
+            for (Toxic toxic : proxy.toxics().getAll()) {
+                toxic.remove();
+            }
+        }
+    }
+
     public void stopProxy() throws IOException {
         if (proxy != null) {
             proxy.delete();

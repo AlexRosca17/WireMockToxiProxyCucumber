@@ -1,1 +1,1 @@
-[{"uid":"d0caeb61b3d33afa","name":"Simulating network latency","time":{"start":1739913651175,"stop":1739913659042,"duration":7867},"status":"passed","severity":"normal"}]
+[{"uid":"5f86da4d20daa8f6","name":"setUpClass","time":{"start":1739918062558,"stop":1739918062559,"duration":1},"status":"broken","severity":"normal"},{"uid":"f9e3a2279c9c1043","name":"Simulating network latency","time":{"start":1739919012144,"stop":1739919018899,"duration":6755},"status":"passed","severity":"normal"}]

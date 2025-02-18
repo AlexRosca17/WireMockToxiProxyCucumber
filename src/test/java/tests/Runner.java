@@ -7,8 +7,8 @@ import org.testng.annotations.Listeners;
 
 @Listeners({AllureTestNg.class})
 @CucumberOptions(
-        features = "src/test/resources/WireMockToxiProxy.feature",
-        glue = {"tests", "tests.steps"},
+        features = "src/test/resources/",
+        glue = "tests",
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports.html",
