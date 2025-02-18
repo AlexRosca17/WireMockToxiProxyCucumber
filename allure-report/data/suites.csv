@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","7867","Simulating network latency","","Tue Feb 18 23:20:51 EET 2025","passed","Tue Feb 18 23:20:59 EET 2025","","Proxy Configuration Testing","Simulating network latency",""

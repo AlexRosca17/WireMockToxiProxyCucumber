@@ -11,29 +11,43 @@ import java.io.IOException;
 
 public class Hooks {
 
-    private static services.WireMockService wireMockService;
+    private static WireMockService wireMockService;
     private static ToxiProxyManager toxiProxyManager;
 
-    @BeforeAll
+    @Before (order = 0)
     public static void setup() throws IOException {
+        System.out.println("Hooks setup executed"); // 🔹 Debugging
+
         if (wireMockService == null) {
             wireMockService = new WireMockService();
         }
         if (toxiProxyManager == null) {
             toxiProxyManager = new ToxiProxyManager();
         }
+
+        System.out.println("Waiting for WireMock & ToxiProxy to fully initialize...");
     }
 
     @AfterAll
     public static void tearDown() throws IOException {
-        wireMockService.stopWireMockServer();
-        toxiProxyManager.stopProxy();
+        System.out.println("Hooks teardown executed"); // 🔹 Log pentru debugging
+
+        if (wireMockService != null) {
+            wireMockService.stopWireMockServer();
+        }
+        if (toxiProxyManager != null) {
+            toxiProxyManager.stopProxy();
+        }
     }
 
-    // Adăugăm un getter static pentru acces global
     public static ToxiProxyManager getToxiProxyManager() {
         if (toxiProxyManager == null) {
-            throw new IllegalStateException("ToxiProxyManager has not been initialized. Make sure @Before in Hooks is executed.");
+            try {
+                System.out.println("ToxiProxyManager was null, reinitializing..."); // 🔹 Debugging
+                toxiProxyManager = new ToxiProxyManager();
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to initialize ToxiProxyManager", e);
+            }
         }
         return toxiProxyManager;
     }
