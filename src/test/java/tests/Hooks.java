@@ -1,25 +1,26 @@
 package tests;
 
 import io.cucumber.java.*;
-import services.WireMockService;
 import tests.services.ToxiProxyManager;
+import tests.services.WireMockService;
+
 import java.io.IOException;
 
 public class Hooks {
-    private static WireMockService wireMockService;
+    private static tests.services.WireMockService wireMockService;
     private static ToxiProxyManager toxiProxyManager;
     private static String currentFeature;
 
 
     @Before
     public void setup(Scenario scenario) throws IOException {
-        // Extragem numele feature-ului curent
+        // Feature that runs
         String detectedFeature = scenario.getUri().toString().replaceAll(".*\\/", "").replace(".feature", "");
 
-        // Dacă e un feature nou, repornim WireMock și ToxiProxy
+        // new feature restart wiremock and toxi proxy
         if (!detectedFeature.equals(currentFeature)) {
             currentFeature = detectedFeature;
-            System.out.println("🔄 New Feature Detected: " + currentFeature);
+            System.out.println("New Feature Detected: " + currentFeature);
 
             // Dacă serverele sunt deja pornite, le oprim înainte să le restartăm
             if (wireMockService != null) {
@@ -30,9 +31,9 @@ public class Hooks {
             }
 
             // Restart WireMock și ToxiProxy pentru noul feature
-            wireMockService = new WireMockService();
+            wireMockService = new tests.services.WireMockService();
             toxiProxyManager = new ToxiProxyManager(currentFeature);
-            System.out.println("✅ WireMock și ToxiProxy reinițializate pentru feature-ul: " + currentFeature);
+            System.out.println(" WireMock and ToxiProxy for " + currentFeature);
         }
     }
 
@@ -41,12 +42,12 @@ public class Hooks {
         wireMockService.stopWireMockServer();
         toxiProxyManager.stopProxy();
 
-        System.out.println("✅ Finalizing scenario in feature: " + currentFeature);
+        System.out.println("Finalizing scenario in feature: " + currentFeature);
     }
 
     public static ToxiProxyManager getToxiProxyManager() {
         if (toxiProxyManager == null) {
-            throw new IllegalStateException("❌ ToxiProxyManager has not been initialized!");
+            throw new IllegalStateException("ToxiProxyManager has not been initialized!");
         }
         return toxiProxyManager;
     }

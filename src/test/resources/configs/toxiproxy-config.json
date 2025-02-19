@@ -1,0 +1,10 @@
+{
+  "default": {
+    "latency": 4000,
+    "bandwidth": 100
+  },
+  "WireMockToxiProxy": {
+    "latency": 3000,
+    "bandwidth": 50
+  }
+}

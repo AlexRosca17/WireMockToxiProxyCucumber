@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class ToxiProxyConfigReader {
-    private static final String CONFIG_PATH = "src/test/resources/toxiproxy-config.json";
+    private static final String CONFIG_PATH = "src/test/resources/configs/toxiproxy-config.json";
     private static JsonNode configData;
 
     static {
